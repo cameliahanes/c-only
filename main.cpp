@@ -1,44 +1,50 @@
 #include <iostream>
-#define modd 98999
-#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <set>
+//#include <Lime.h>
+#define CLASS1234_H
 using namespace std;
 
-void precalculareSI (int m[202][202], int n){
-m[1][1] = 1;
-for(int i =2; i<n; i++){
-    for(int j = 1; j<=i; j++)
-        m[i][j] = ( m[i-1][j-1] - (i-1)*m[i-1][j] )%modd;
-}
-}
+//find out if there are any four numbers that sum up to zero
+//the same element can be used multiple times
 
-void precalculareSII (int m[202][202], int n){
-m[1][1] = 1;
-for(int i=2; i<n; i++){
-    for( int j =1; j<=i; j++)
-        m[i][j] = ( m[i-1][j-1] + j *m[i-1][j] ) % modd;
-}
-}
-int main()
-{
-    ifstream f("stirling.in");
-    ofstream g("stirling.out");
-    int n, T;
-    int s[202][202], S[202][202];
-    precalculareSI(s, 202);
-    precalculareSII(S, 202);
-    f >> T;
-    int x, m;
-    while(T--){
-        f >>x >> n>> m;
-        if( x == 1){            g << s[n][m]<<"\n";
-           }
-        else{
-            if( x == 2){
-                g << S[n][m]<<"\n";
+//MEET IN THE MIDDLE technique
+//we store all possible sums a + b in a hash set S
+//then iterate through all n^2 combinations for c and d and
+//check if S contains -(c+d)
+
+class Solution{
+
+public:
+    vector<vector<int> > fourSum(vector<int> &num, int target){
+        sort(num.begin(), num.end());
+        set<vector<int> >rs;
+        int n = num.size();
+        for ( int i = 0; i < n-3; i ++){
+            for (int j = i+1; j < n-3; j ++){
+                int p = j+1;
+                int q = n-1;
+                while( p < q ){
+                    int sum = num[i] + num[j] + num[p] + num[q];
+                    if ( sum == target ){
+                        vector<int> tmp(4);
+                        tmp[0] = num[i];
+                        tmp[1] = num[j];
+                        tmp[2] = num[p];
+                        tmp[3] = num[q];
+                        rs.insert(tmp);
+                        p ++;
+                        q --;
+                    } else if ( sum < target ){
+                    p ++; } else { q --; }
                 }
+
+            }
         }
+        vector<vector<int> > result(rs.begin(), rs.end());
+        return result;
     }
-    f.close();
-    g.close();
-    return 0;
-}
+
+};
+
