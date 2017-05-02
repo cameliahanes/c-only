@@ -46,13 +46,6 @@ int main()
         } else {
         cout << n - k - 1 <<"\n";
         }
-
-
     }
-
-
-
-
-
     return 0;
 }
