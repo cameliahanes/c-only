@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1496130411 source:c:\users\camelia\documents\amazon\graphcolor\main.cpp
+	<iostream>
+	<list>
+	<fstream>
+
