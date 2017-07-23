@@ -17,9 +17,7 @@ void process(string pattern, int F[]){
             F[i] = 0; i++;
             }
         }
-
     }
-
 }
 
 vector<int> kmp(string text, string pattern){
