@@ -32,9 +32,7 @@ public:
     int totalNQueens(int n) {
         unordered_set<int> visitedCol, visited45, visited135;
         int counter = 0;
-        
         totalNQueensHelper(counter, visitedCol, visited45, visited135, 0, n);
-        
         return counter;
     }
 };
