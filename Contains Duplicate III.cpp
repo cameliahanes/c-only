@@ -6,14 +6,16 @@ Given an array of integers, find out whether there are two distinct indices i an
 
 */
 
+
 class Solution {
 public:
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
-        if ( nums.size() == 0 || nums.size() == 1 ) return false;
-        set<int> s;
-        for ( int i = 0; i < nums.size() ; ++ i ){
-            auto index = s.lower_bound(nums[i] - t);
-            if ( index != s.end() && *index - nums[i] <= t ) return true;
+        set<int> s;  
+        for (int i = 0; i < nums.size(); i++) {
+            if (i > k) s.erase(nums[i - k - 1]); 
+            auto index = s.lower_bound(nums[i] - t);  
+            if (index != s.end() && *index - nums[i] <= t) 
+                return true;
             s.insert(nums[i]);
         }
         return false;
