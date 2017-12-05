@@ -3,8 +3,10 @@ using namespace std;
 
 class Solution {
 private:
+        /// kinf od wrapper for a well defined (somewhere) function that checks for the given word in some trie i guess :)
         bool isWord(string s){ return true; }
 
+        /// i ve just given som examples, in the whole project there l be for all chars :) 
         string nearbychars(char c){
                 if (c == 'h' ) return "jg";
                 if (c == 'o') return "po";
