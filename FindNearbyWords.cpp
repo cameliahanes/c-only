@@ -12,14 +12,18 @@ private:
                 return "#";
         }
 
-        void nearbyperm(set<string>& res, string& helper, string& s, int index){
-                if (index == s.size()){
+        void nearbyperm(set<string>& res, string& helper, string s, unsigned int index){
+                if (index == s.size() ){
                 if ( isWord(helper) )
                         res.insert(helper);
+                    return;
                 }
 
-                string c =  nearbychars(s[index]);
-                for (int i = 0; i < c.size(); ++ i ){
+                string c =  this->nearbychars(s[index]);
+                helper += s[index];
+                nearbyperm(res, helper, s, index + 1);
+                helper.pop_back();
+                for (unsigned int i = 0; i < c.size(); ++ i ){
                         helper += c[i];
                         nearbyperm(res, helper, s, index + 1);
                         helper = helper.substr(0, helper.size() - 1);
@@ -46,11 +50,4 @@ for (; it != res.end(); ++ it )
         cout << *it << " ";
 return 0;
 }
-
-
-
-
-
-
-
 
