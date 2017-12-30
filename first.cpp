@@ -3,7 +3,6 @@ using namespace std;
 
 int minn[100];
 
-
 int main(){
 int n;
 cin >> n;
@@ -17,7 +16,6 @@ for (int i = 0; i <= sum; ++ i )
 	minn[i] = INT_MAX;
 minn[0] = 0;
 
-
 for (int i = 1; i <= sum; ++ i ){
 	for (int j = 0; j < n; ++ j ){
 		if ( s[j] <= i && minn[i - s[j]] + 1 < minn[i] )
@@ -26,6 +24,5 @@ for (int i = 1; i <= sum; ++ i ){
 }
 
 cout << minn[sum];
-
 return 0;
 }
