@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int tsum_rec(vector<int>& v, int sum, int index){
+	if (index == v.size()) return 0;
+	if (index == v.size() - 1 )
+		if (sum == 0)
+			return 1;
+	return tsum_rec(v, sum  - v[index], index + 1) + tsum_rec(v, sum + v[index], index + 1);
+}
+
+int main(){
+vector<int> v(5, 1);
+cout << v[2];
+int S = 3;
+
+cout << tsum_rec(v, S, 0);
+
+return 0;
+}
